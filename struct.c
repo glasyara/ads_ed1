@@ -45,23 +45,23 @@ int insere_na_posicao(Lista *lista, int p, int valor) {
     }
 
     int added = 0;
-    added = lista.tamanho;
+    added = lista->tamanho;
 
     int i = 0;
-    i = lista.tamanho - 1;
+    i = lista->tamanho;
     do {
         
        if (i != p) {
-        lista.elementos[i+1] = lista.elementos[i];
-        i++;
+        lista->elementos[i] = lista->elementos[i-1];
+        i--;
        }
         else if (i == p) {
-            lista.elementos[i+1] = lista.elementos[i];
+            lista->elementos[i+1] = lista->elementos[i];
             lista->elementos[i] = valor;
-            lista.tamanho++;
+            lista->tamanho++;
         }
 
-    } while (added == lista->tamanho)
+    } while (added == lista->tamanho);
 
        //int i = 0;
        //for(i = lista->tamanho - 1; i >=p; i--);
