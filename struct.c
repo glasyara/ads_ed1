@@ -43,11 +43,31 @@ int insere_na_posicao(Lista *lista, int p, int valor) {
     if(lista_cheia(lista) == 1) {
         return 0;
     }
-       int i = 0;
-       for(i = lista->tamanho - 1; i >=p; i--);
-       lista->elementos[i+1] = lista->elementos[i];
-       lista->elementos[p] = valor;
-       lista->tamanho++;
+
+    int added = 0;
+    added = lista.tamanho;
+
+    int i = 0;
+    i = lista.tamanho - 1;
+    do {
+        
+       if (i != p) {
+        lista.elementos[i+1] = lista.elementos[i];
+        i++;
+       }
+        else if (i == p) {
+            lista.elementos[i+1] = lista.elementos[i];
+            lista->elementos[i] = valor;
+            lista.tamanho++;
+        }
+
+    } while (added == lista->tamanho)
+
+       //int i = 0;
+       //for(i = lista->tamanho - 1; i >=p; i--);
+       //lista->elementos[i+1] = lista->elementos[i];
+       //lista->elementos[p] = valor;
+       //lista->tamanho++;
     return 1;
     
 }
@@ -92,7 +112,7 @@ int main(int argc, char** argv) {
     printf("A lista esta vazia? %d", estaVazia);
     printf("\nQuantidade de elementos na lista: %d", tamanho);
 
-    printf("elemento[0] = %d\n", lista->elementos[0]);
+    printf("\nelemento[0] = %d\n", lista->elementos[0]);
     printf("elemento[1] = %d\n", lista->elementos[1]);
     printf("elemento[2] = %d\n", lista->elementos[2]);
     printf("elemento[3] = %d\n", lista->elementos[3]);
