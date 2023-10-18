@@ -56,7 +56,6 @@ int insere_na_posicao(Lista *lista, int p, int valor) {
         i--;
        }
         else if (i == p) {
-            lista->elementos[i+1] = lista->elementos[i];
             lista->elementos[i] = valor;
             lista->tamanho++;
         }
@@ -79,10 +78,25 @@ int remove_da_posicao(Lista *lista, int p) {
     if(lista_cheia(lista) == 1) {
         return 0;
     }
-       for(p < lista->tamanho - 1; p++;)
-       lista->elementos[p] = lista->elementos[p+1];
-       lista->tamanho--;
-       return 1;
+
+
+    int i = 0;
+    i = lista->tamanho - 1;
+    do {
+        
+        if (i != p) {
+        lista->elementos[p] = lista->elementos[p+1];
+        p++;
+        }
+        if (i == p) {
+            lista->tamanho--;
+        }
+        
+
+    } while (i != p); 
+
+
+    return 1;
     
 }
 
@@ -106,21 +120,16 @@ int main(int argc, char** argv) {
     insere_na_posicao(lista, 3, 9);
     insere_na_posicao(lista, 3, 3);
 
+    remove_da_posicao(lista, 4);
+
     int estaVazia = lista_vazia(lista);
     int tamanho = tamanho_da_lista(lista);
 
     printf("A lista esta vazia? %d", estaVazia);
     printf("\nQuantidade de elementos na lista: %d", tamanho);
 
-    printf("\nelemento[0] = %d\n", lista->elementos[0]);
-    printf("elemento[1] = %d\n", lista->elementos[1]);
-    printf("elemento[2] = %d\n", lista->elementos[2]);
-    printf("elemento[3] = %d\n", lista->elementos[3]);
-    printf("elemento[4] = %d\n", lista->elementos[4]);
-    printf("elemento[5] = %d\n", lista->elementos[5]);
-    printf("elemento[6] = %d\n", lista->elementos[6]);
-    printf("elemento[7] = %d\n", lista->elementos[7]);
-    printf("elemento[8] = %d\n", lista->elementos[8]);
-    printf("elemento[9] = %d\n", lista->elementos[9]);
-    printf("elemento[10] = %d\n", lista->elementos[10]);
+    
+    for (int i = 0; i < lista->tamanho; i++)
+    printf("\nelemento[%i] = %d\n", i, lista->elementos[i]);
+    return 0;
 }
