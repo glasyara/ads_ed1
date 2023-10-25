@@ -49,13 +49,11 @@ void imprimir_lista(Lista* l) {
 bool adiciona_elemento(Lista* l, Elemento e) {
     
     if (l->nelem == MAX) {
-        printf("Erro ao inserir elemento na lista, lista cheia.\n");
         return false;
     }
     
     l->elementos[l->nelem] = e;
     l->nelem++;
-    printf("Elemento '%s' iserido com sucesso na lista.\n", e);
     return true;
 }
 
@@ -80,19 +78,36 @@ int main(char* argc, int argv) {
     imprimir_lista(lista);
 
     novo_elemento->valor = "gato";
-    adiciona_elemento(lista, *novo_elemento);
+    if (adiciona_elemento(lista, *novo_elemento) == true) {
+        printf("Elemento '%s' inserido com sucesso na lista.\n", novo_elemento->valor);
+    } else {
+        printf("Erro ao inserir elemento na lista, lista cheia.\n");
+    }
     novo_elemento->valor = "cachorro";
-    adiciona_elemento(lista, *novo_elemento);
+    if (adiciona_elemento(lista, *novo_elemento) == true) {
+        printf("Elemento '%s' inserido com sucesso na lista.\n", novo_elemento->valor);
+    } else {
+        printf("Erro ao inserir elemento na lista, lista cheia.\n");
+    }
     novo_elemento->valor = "pato";
-    adiciona_elemento(lista, *novo_elemento);
+    if (adiciona_elemento(lista, *novo_elemento) == true) {
+        printf("Elemento '%s' inserido com sucesso na lista.\n", novo_elemento->valor);
+    } else {
+        printf("Erro ao inserir elemento na lista, lista cheia.\n");
+    }
     
 
     printf("\nLista vazia? %s\n", boolToString(lista_vazia(lista)));
     printf("Lista cheia? %s\n", boolToString(lista_cheia(lista)));
     
     novo_elemento->valor = "galinha";
-    adiciona_elemento(lista, *novo_elemento);
+    if (adiciona_elemento(lista, *novo_elemento) == true) {
+        printf("Elemento '%s' inserido com sucesso na lista.\n", novo_elemento->valor);
+    } else {
+        printf("Erro ao inserir elemento na lista, lista cheia.\n");
+    }
     
     imprimir_lista(lista);
 
+    return 1;
 }
